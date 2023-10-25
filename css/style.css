@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700,400");
+
+:root {
+  --primary-color: #E5EAF0;
+  --secondary-color: #FFFFFF;
+  --tertiary-color: #F2F4FF;
+  --text-primary: #292E5D;
+  --text-secondary: #0855E7;
+  --button-color: #001743;
+  --check-button: #36AE7C;
+  --edit-button: #0855E7;
+  --trash-button: #EB5353;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--primary-color);
+}
+
+body,
+input,
+button {
+  font-family: 'DM Sans', Arial, Helvetica, sans-serif;
+}
+
+input,
+button {
+  font-size: 16px;
+}
+
+.head_bar {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-color);
+  color: var(--text-primary);
+}
+
+main {
+  max-width: 800px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 16px;
+
+}
+
+.input_section {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+}
+
+.input_section>h2 {
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.input_section>form>.input {
+  margin: 10px 0;
+}
+
+.input_section>form>.input>label {
+  color: var(--text-primary);
+  font-weight: bold;
+}
+
+.input_section>form>.input>input {
+  background-color: var(--tertiary-color);
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  border-radius: 5px;
+}
+
+.input_section>form>.input_inline>label {
+  color: var(--text-primary);
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+
+.input_section>form>button {
+  background-color: var(--button-color);
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.input_section>form>button>span {
+  font-weight: bold;
+}
+
+.input_section>form>.input_inline {
+  margin: 12px 0;
+  display: flex;
+  align-items: center;
+}
+
+.search_section {
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+}
+
+.search_section>h2 {
+  color: var(--text-primary);
+}
+
+.search_section>form {
+  padding: 16px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr 0.5fr;
+  grid-gap: 10px;
+}
+
+.search_section>form>label {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.search_section>form>input {
+  background-color: var(--tertiary-color);
+  border: 0;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.search_section>form>button {
+  background-color: var(--button-color);
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.book_shelf {
+  margin: 16px 0 0 0;
+  background-color: var(--secondary-color);
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.book_shelf h2 {
+  color: var(--text-primary);
+}
+
+.book_shelf>.book_list {
+  padding: 16px;
+}
