@@ -53,7 +53,7 @@ main {
 .input_section {
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 20px;
   background-color: var(--secondary-color);
   border-radius: 8px;
 }
@@ -75,9 +75,11 @@ main {
 .input_section>form>.input>input {
   background-color: var(--tertiary-color);
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   border: 0;
   border-radius: 5px;
+  font-size: 1.2rem;
+  margin-top: 8px;
 }
 
 .input_section>form>.input_inline>label {
@@ -94,7 +96,7 @@ main {
   border-radius: 5px;
   display: block;
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   cursor: pointer;
 }
 
@@ -113,17 +115,18 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px;
+  padding: 20px;
   background-color: var(--secondary-color);
   border-radius: 10px;
 }
 
 .search_section>h2 {
   color: var(--text-primary);
+  margin-bottom: 14px;
 }
 
 .search_section>form {
-  padding: 16px;
+  padding: 2px;
   width: 100%;
   display: grid;
   grid-template-columns: auto 1fr 0.5fr;
@@ -139,7 +142,7 @@ main {
 .search_section>form>input {
   background-color: var(--tertiary-color);
   border: 0;
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
 }
 
@@ -154,14 +157,110 @@ main {
 .book_shelf {
   margin: 16px 0 0 0;
   background-color: var(--secondary-color);
-  padding: 16px;
+  padding: 20px;
   border-radius: 10px;
 }
 
 .book_shelf h2 {
   color: var(--text-primary);
+  margin-bottom: 14px;
 }
 
-.book_shelf>.book_list {
-  padding: 16px;
+.book_list {
+  padding: 2px;
+}
+
+.book_item {
+  background-color: var(--tertiary-color);
+  padding: 8px 16px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.book_info {
+  flex: 1;
+}
+
+.book_info>p {
+  color: var(--text-secondary)
+}
+
+h3 {
+  font-size: 1.8rem;
+  color: var(--text-secondary);
+  margin: 4px 0;
+}
+
+p {
+  margin: 4px 0;
+}
+
+.book_list>.book_item>.action {
+  display: flex;
+  gap: 5px;
+}
+
+button {
+  border: 0;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.check_button {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  margin-left: 4px;
+  border-radius: 100%;
+  cursor: pointer;
+  background-color: var(--check-button);
+}
+
+.edit_button {
+  width: 40px;
+  height: 40px;
+  margin-left: 4px;
+  border-radius: 100%;
+  cursor: pointer;
+  background-color: var(--edit-button);
+}
+
+.trash_button {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  margin-left: 4px;
+  border-radius: 100%;
+  cursor: pointer;
+  background-color: var(--trash-button);
+}
+
+.check_button>button {
+  width: 20px;
+  height: 20px;
+  background: url('../assets/img/check.svg');
+  background-size: contain;
+  border: none;
+}
+
+.edit_button>button {
+  width: 20px;
+  height: 20px;
+  background: url('../assets/img/edit-2.svg');
+  background-size: contain;
+  translate: 10px 9px;
+  border: none;
+}
+
+.trash_button>button {
+  width: 20px;
+  height: 20px;
+  background: url('../assets/img/trash.svg');
+  background-size: contain;
+  align-items: center;
+  border: none;
 }
