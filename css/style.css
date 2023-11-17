@@ -97,7 +97,12 @@ main {
   display: block;
   width: 100%;
   padding: 10px;
+  transition: 0.2s;
   cursor: pointer;
+}
+
+.input_section>form>button:hover {
+  background-color: #00225d;
 }
 
 .input_section>form>button>span {
@@ -149,9 +154,14 @@ main {
 .search_section>form>button {
   background-color: var(--button-color);
   color: white;
+  transition: 0.2s;
   border: 0;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.search_section>form>button:hover {
+  background-color: #00225d;
 }
 
 .book_shelf {
@@ -216,8 +226,13 @@ button {
   padding: 10px;
   margin-left: 4px;
   border-radius: 100%;
+  transition: 0.2s;
   cursor: pointer;
   background-color: var(--check-button);
+}
+
+.check_button:hover {
+  background-color: #33a073;
 }
 
 .edit_button {
@@ -225,8 +240,13 @@ button {
   height: 40px;
   margin-left: 4px;
   border-radius: 100%;
+  transition: 0.2s;
   cursor: pointer;
   background-color: var(--edit-button);
+}
+
+.edit_button:hover {
+  background-color: #084ac5;
 }
 
 .trash_button {
@@ -235,8 +255,13 @@ button {
   padding: 10px;
   margin-left: 4px;
   border-radius: 100%;
+  transition: 0.2s;
   cursor: pointer;
   background-color: var(--trash-button);
+}
+
+.trash_button:hover {
+  background-color: #de4444;
 }
 
 .check_button>button {
