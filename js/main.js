@@ -32,6 +32,12 @@ document.addEventListener(RENDER_EVENT, function () {
   }
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+  if (isStorageExist()) {
+    loadDataFromStorage();
+  }
+});
+
 function addBook() {
   const title = document.getElementById('inputBookTitle').value;
   const author = document.getElementById('inputBookAuthor').value;
@@ -74,6 +80,19 @@ function isStorageExist() {
     return false;
   }
   return true;
+}
+
+function loadDataFromStorage() {
+  const serializedData = localStorage.getItem(STORAGE_KEY);
+  let data = JSON.parse(serializedData);
+
+  if (data !== null) {
+    for (const book of data) {
+      books.push(book);
+    }
+  }
+
+  document.dispatchEvent(new Event(RENDER_EVENT));
 }
 
 function makeBook(bookObject) {
