@@ -1,34 +1,60 @@
+const books = [];
+const RENDER_EVENT = 'render-book';
+const SAVED_EVENT = 'saved-book';
+const STORAGE_KEY = 'BOOKSHELF_APPS';
+
 document.addEventListener('DOMContentLoaded', function () {
-  var modeSwitch = document.querySelector('.mode-switch');
-
-  modeSwitch.addEventListener('click', function () {
-    document.documentElement.classList.toggle('dark');
-    modeSwitch.classList.toggle('active');
-  });
-
-  var listView = document.querySelector('.list-view');
-  var gridView = document.querySelector('.grid-view');
-  var projectsList = document.querySelector('.project-boxes');
-
-  listView.addEventListener('click', function () {
-    gridView.classList.remove('active');
-    listView.classList.add('active');
-    projectsList.classList.remove('jsGridView');
-    projectsList.classList.add('jsListView');
-  });
-
-  gridView.addEventListener('click', function () {
-    gridView.classList.add('active');
-    listView.classList.remove('active');
-    projectsList.classList.remove('jsListView');
-    projectsList.classList.add('jsGridView');
-  });
-
-  document.querySelector('.messages-btn').addEventListener('click', function () {
-    document.querySelector('.messages-section').classList.add('show');
-  });
-
-  document.querySelector('.messages-close').addEventListener('click', function () {
-    document.querySelector('.messages-section').classList.remove('show');
+  const submitForm = document.getElementById('inputBook');
+  submitForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    addBook();
   });
 });
+
+document.addEventListener(SAVED_EVENT, function () {
+  console.log(localStorage.getItem(STORAGE_KEY));
+});
+
+function addBook() {
+  const title = document.getElementById('inputBookTitle').value;
+  const author = document.getElementById('inputBookAuthor').value;
+  const year = document.getElementById('inputBookYear').value;
+  const isCompleted = document.getElementById('inputBookIsComplete').checked;
+
+  const generatedID = generateId();
+  const bookObject = generateBookObject(generatedID, title, author, year, isCompleted);
+  books.push(bookObject);
+
+  document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
+}
+
+function generateId() {
+  return +new Date();
+}
+
+function generateBookObject(id, title, author, year, isCompleted) {
+  return {
+    id,
+    title,
+    author,
+    year,
+    isCompleted
+  }
+}
+
+function saveData() {
+  if (isStorageExist()) {
+    const parsed = JSON.stringify(books);
+    localStorage.setItem(STORAGE_KEY, parsed);
+    document.dispatchEvent(new Event(SAVED_EVENT));
+  }
+}
+
+function isStorageExist() {
+  if (typeof (Storage) === undefined) {
+    alert('Your browser does not support local storage');
+    return false;
+  }
+  return true;
+}
