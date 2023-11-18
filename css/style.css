@@ -8,6 +8,7 @@
   --text-secondary: #0855E7;
   --button-color: #001743;
   --check-button: #36AE7C;
+  --undo-button: #e6bc00;
   --edit-button: #0855E7;
   --trash-button: #EB5353;
 }
@@ -194,14 +195,19 @@ main {
   flex: 1;
 }
 
-.book_info>p {
-  color: var(--text-secondary)
+.book_info>h4,
+p {
+  color: var(--text-primary)
 }
 
 h3 {
   font-size: 1.8rem;
   color: var(--text-secondary);
   margin: 4px 0;
+}
+
+h4 {
+  font-size: 1.1rem;
 }
 
 p {
@@ -233,6 +239,21 @@ button {
 
 .check_button:hover {
   background-color: #33a073;
+}
+
+.undo_button {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  margin-left: 4px;
+  border-radius: 100%;
+  transition: 0.2s;
+  cursor: pointer;
+  background-color: var(--undo-button);
+}
+
+.undo_button:hover {
+  background-color: #dcb300;
 }
 
 .edit_button {
@@ -268,6 +289,16 @@ button {
   width: 20px;
   height: 20px;
   background: url('../assets/img/check.svg');
+  background-size: contain;
+  border: none;
+}
+
+.undo_button>button {
+  width: 20px;
+  height: 20px;
+  background: url('../assets/img/undo.png');
+  position: absolute;
+  z-index: 10;
   background-size: contain;
   border: none;
 }
