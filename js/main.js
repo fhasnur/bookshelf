@@ -188,13 +188,31 @@ function addBookToCompleted(bookId) {
 }
 
 function removeBookFromCompleted(bookId) {
-  const bookTarget = findBookIndex(bookId);
+  const bookTarget = findBook(bookId);
 
-  if (bookTarget === -1) return;
+  if (bookTarget == null) return;
 
-  books.splice(bookTarget, 1);
-  document.dispatchEvent(new Event(RENDER_EVENT));
-  saveData();
+  Swal.fire({
+    title: 'Konfirmasi',
+    text: 'Apakah Anda yakin ingin menghapus buku ini?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Ya, Hapus!',
+    cancelButtonText: 'Batal',
+    cancelButtonColor: '#EB5353',
+    confirmButtonColor: '#0855E7',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const bookIndex = findBookIndex(bookId);
+
+      if (bookIndex !== -1) {
+        books.splice(bookIndex, 1);
+
+        document.dispatchEvent(new Event(RENDER_EVENT));
+        saveData();
+      }
+    }
+  });
 }
 
 function undoBookFromCompleted(bookId) {
