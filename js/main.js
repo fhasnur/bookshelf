@@ -50,6 +50,7 @@ function addBook() {
 
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
+  resetFormData();
 }
 
 function generateId() {
@@ -199,4 +200,11 @@ function findBookIndex(bookId) {
   }
 
   return -1;
+}
+
+function resetFormData() {
+  document.getElementById('inputBookTitle').value = '';
+  document.getElementById('inputBookAuthor').value = '';
+  document.getElementById('inputBookYear').value = '';
+  document.getElementById('inputBookIsComplete').checked = false;
 }
