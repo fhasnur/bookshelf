@@ -133,6 +133,15 @@ function makeBook(bookObject) {
       undoBookFromCompleted(bookObject.id);
     });
 
+    const editButton = document.createElement('button');
+    const wrapperEditButton = document.createElement('div');
+    wrapperEditButton.classList.add('edit_button');
+    wrapperEditButton.append(editButton);
+
+    editButton.addEventListener('click', function () {
+      editBook(bookObject.id);
+    });
+
     const trashButton = document.createElement('button');
     const wrapperTrashButton = document.createElement('div');
     wrapperTrashButton.classList.add('trash_button');
@@ -142,8 +151,17 @@ function makeBook(bookObject) {
       removeBookFromCompleted(bookObject.id);
     });
 
-    wrapper.append(wrapperUndoButton, wrapperTrashButton);
+    wrapper.append(wrapperUndoButton, wrapperEditButton, wrapperTrashButton);
   } else {
+    const editButton = document.createElement('button');
+    const wrapperEditButton = document.createElement('div');
+    wrapperEditButton.classList.add('edit_button');
+    wrapperEditButton.append(editButton);
+
+    editButton.addEventListener('click', function () {
+      editBook(bookObject.id);
+    });
+
     const checkButton = document.createElement('button');
     const wrapperCheckButton = document.createElement('div');
     wrapperCheckButton.classList.add('check_button');
@@ -153,7 +171,7 @@ function makeBook(bookObject) {
       addBookToCompleted(bookObject.id);
     });
 
-    wrapper.append(wrapperCheckButton)
+    wrapper.append(wrapperEditButton, wrapperCheckButton)
   }
 
   return wrapper;
@@ -188,6 +206,47 @@ function undoBookFromCompleted(bookId) {
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
 }
+
+function editBook(bookId) {
+  const bookTarget = findBook(bookId);
+
+  if (bookTarget == null) return;
+
+  Swal.fire({
+    title: 'Edit Book',
+    html:
+      `<input id="swal-input1" class="swal2-input" value="${bookTarget.title}" placeholder="Title">` +
+      `<input id="swal-input2" class="swal2-input" value="${bookTarget.author}" placeholder="Author">` +
+      `<input id="swal-input3" class="swal2-input" value="${bookTarget.year}" placeholder="Year">`,
+    focusConfirm: false,
+    showCancelButton: true,
+    confirmButtonText: 'Simpan',
+    cancelButtonText: 'Batal',
+    confirmButtonColor: '#0855E7',
+    cancelButtonColor: '#EB5353',
+    preConfirm: () => {
+      const newTitle = Swal.getPopup().querySelector('#swal-input1').value;
+      const newAuthor = Swal.getPopup().querySelector('#swal-input2').value;
+      const newYear = Swal.getPopup().querySelector('#swal-input3').value;
+
+      if (!newTitle || !newAuthor || !newYear) {
+        Swal.showValidationMessage('Please fill in all fields');
+      }
+
+      return { newTitle, newAuthor, newYear };
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      bookTarget.title = result.value.newTitle;
+      bookTarget.author = result.value.newAuthor;
+      bookTarget.year = result.value.newYear;
+
+      document.dispatchEvent(new Event(RENDER_EVENT));
+      saveData();
+    }
+  });
+}
+
 
 function findBook(bookId) {
   for (const bookItem of books) {
