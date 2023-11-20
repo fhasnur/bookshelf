@@ -59,6 +59,13 @@ function addBook() {
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
   resetFormData();
+
+  Swal.fire({
+    title: 'Berhasil!',
+    text: 'Buku berhasil ditambahkan',
+    icon: 'success',
+    confirmButtonColor: '#0855E7',
+  });
 }
 
 function generateId() {
