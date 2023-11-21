@@ -160,15 +160,6 @@ function makeBook(bookObject) {
 
     wrapper.append(wrapperUndoButton, wrapperEditButton, wrapperTrashButton);
   } else {
-    const editButton = document.createElement('button');
-    const wrapperEditButton = document.createElement('div');
-    wrapperEditButton.classList.add('edit_button');
-    wrapperEditButton.append(editButton);
-
-    editButton.addEventListener('click', function () {
-      editBook(bookObject.id);
-    });
-
     const checkButton = document.createElement('button');
     const wrapperCheckButton = document.createElement('div');
     wrapperCheckButton.classList.add('check_button');
@@ -178,7 +169,25 @@ function makeBook(bookObject) {
       addBookToCompleted(bookObject.id);
     });
 
-    wrapper.append(wrapperEditButton, wrapperCheckButton)
+    const editButton = document.createElement('button');
+    const wrapperEditButton = document.createElement('div');
+    wrapperEditButton.classList.add('edit_button');
+    wrapperEditButton.append(editButton);
+
+    editButton.addEventListener('click', function () {
+      editBook(bookObject.id);
+    });
+
+    const trashButton = document.createElement('button');
+    const wrapperTrashButton = document.createElement('div');
+    wrapperTrashButton.classList.add('trash_button');
+    wrapperTrashButton.append(trashButton);
+
+    trashButton.addEventListener('click', function () {
+      removeBookFromCompleted(bookObject.id);
+    });
+
+    wrapper.append(wrapperCheckButton, wrapperEditButton, wrapperTrashButton);
   }
 
   return wrapper;
