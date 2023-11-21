@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function addBook() {
   const title = document.getElementById('inputBookTitle').value;
   const author = document.getElementById('inputBookAuthor').value;
-  const year = document.getElementById('inputBookYear').value;
+  const year = parseInt(document.getElementById('inputBookYear').value, 10);
   const isCompleted = document.getElementById('inputBookIsComplete').checked;
 
   const generatedID = generateId();
@@ -252,7 +252,7 @@ function editBook(bookId) {
     preConfirm: () => {
       const newTitle = Swal.getPopup().querySelector('#swal-input1').value;
       const newAuthor = Swal.getPopup().querySelector('#swal-input2').value;
-      const newYear = Swal.getPopup().querySelector('#swal-input3').value;
+      const newYear = parseInt(Swal.getPopup().querySelector('#swal-input3').value, 10);
 
       if (!newTitle || !newAuthor || !newYear) {
         Swal.showValidationMessage('Please fill in all fields');
